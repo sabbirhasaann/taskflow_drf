@@ -62,3 +62,18 @@ def task_summary(request):
             "total_task": 2,
         }
     )
+
+
+@api_view(["GET", "POST"])
+def example_endpoint(request):
+    if request.method == "GET":
+        return Response(
+            {
+                "message": "Read operation"
+            }
+        )
+    return Response(
+        {
+            "message": "Write operation"
+        }
+    )

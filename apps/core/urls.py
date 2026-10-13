@@ -3,6 +3,7 @@ from apps.core.views import (
     HealthCheckView,
     RequestDemoView,
     task_summary,
+    example_endpoint,
 )
 
 app_name = "core"
@@ -10,4 +11,5 @@ urlpatterns = [
     path("health/", HealthCheckView.as_view(), name="health"),
     path('request-demo/', RequestDemoView.as_view(), name='request-demo'),
     path('task-summary/', task_summary, name='task-summary'),
+    path('example-endpoint/', example_endpoint, name='example-endpoint'),
 ]
