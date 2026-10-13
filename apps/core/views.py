@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
 
 class HealthCheckView(APIView):
@@ -52,3 +53,12 @@ class RequestDemoView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
+
+@api_view(["GET"])
+def task_summary(request):
+    return Response(
+        {
+            "total_task": 2,
+        }
+    )
