@@ -15,6 +15,7 @@ INSTALLED_APPS = [
 
 NEW_INSTALLED_APPS = [
     'rest_framework',
+    "apps.core.apps.CoreConfig",
 ]
 
 INSTALLED_APPS += NEW_INSTALLED_APPS
