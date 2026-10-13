@@ -13,6 +13,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+NEW_INSTALLED_APPS = [
+    'rest_framework',
+]
+
+INSTALLED_APPS += NEW_INSTALLED_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
