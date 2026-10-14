@@ -53,3 +53,16 @@ class RequestDemoView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
+
+class TaskListCreateView(APIView):
+
+    def get(self, request):
+        return Response({
+            'operation': 'list tasks'
+        })
+
+    def post(self, request):
+        return Response({
+            'operation': 'create task'
+        })
