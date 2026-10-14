@@ -123,17 +123,7 @@ class TaskPreviewView(APIView):
         serializer = TaskPreviewSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        print("Serializer....", serializer)
-        validated_input = serializer.validated_data
-        print("Validate Data...", validated_input)
-        print("Validate Data type...", type(validated_input))
-        response_data = serializer.data
-        print("Response data...", response_data)
-        print("Response data type...", type(response_data))
-
         return Response(
-            {
-                'succes': "You're ready to go!",
-            },
+            serializer.data,
             status=status.HTTP_200_OK,
         )

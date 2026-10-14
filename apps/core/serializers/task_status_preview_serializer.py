@@ -3,9 +3,17 @@ from rest_framework import serializers
 
 class TaskPreviewSerializer(serializers.Serializer):
 
-    name = serializers.CharField(max_length=200)
-    description = serializers.CharField(
-        required=False,
-        allow_blank=True,
+    title = serializers.CharField(
+    max_length=200,
+    trim_whitespace=True,
     )
-    is_completed = serializers.BooleanField(default=False)
+    description = serializers.CharField(        
+        required=False,        
+        allow_blank=True,        
+        max_length=2000,    
+    )    
+    
+    is_completed = serializers.BooleanField(        
+        required=False,        
+        default=False,    
+    )
