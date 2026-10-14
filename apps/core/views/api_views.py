@@ -55,14 +55,62 @@ class RequestDemoView(APIView):
         )
 
 
+TASK_STATUS_TRANSITIONS = {
+    "todo": {
+        "in_progress"
+    },
+    "in_progress": {
+        "completed"
+    },
+    "completed": set(),
+}
+
+
 class TaskListCreateView(APIView):
 
-    def get(self, request):
-        return Response({
-            'operation': 'list tasks'
-        })
-
     def post(self, request):
-        return Response({
-            'operation': 'create task'
-        })
+        data = request.data
+
+        if not isinstance(data, dict):
+            return Response(
+                {
+                    "detail": "The request body must be a JSON object."
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        current_status = data.get("current_status")
+        new_status = data.get("new_status")
+
+        valid_statuses = set(TASK_STATUS_TRANSITIONS.keys())
+
+        if (not isinstance(current_status, str) or current_status not in valid_statuses):
+            return Response(
+                {
+                    "current_status": [
+                        "Provide a valid task status"
+                    ]
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if (not isinstance(new_status, str) or new_status not in valid_statuses):
+            return Response(
+                {
+                    "new_status": [
+                        "Provide a valid task status"
+                    ]
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        allowed = (new_status in TASK_STATUS_TRANSITIONS[current_status])
+
+        return Response(
+            {
+                "allowed": allowed,
+                "current_status": current_status,
+                "new_status": new_status,
+            },
+            status=status.HTTP_200_OK,
+        )
