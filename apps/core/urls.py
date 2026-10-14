@@ -3,6 +3,7 @@ from apps.core.views.api_views import (
     HealthCheckView,
     RequestDemoView,
     TaskListCreateView,
+    TaskPreviewView,
 )
 
 from apps.core.views.fbvs import (
@@ -22,4 +23,5 @@ urlpatterns = [
     path('task-status-preview/', task_status_preview, name='task-status-preview'),
     path('v2/task-status-preview/', TaskListCreateView.as_view(),
          name='v2-task-status-preview'),
+    path('task-preview/', TaskPreviewView.as_view(), name='task-preview'),
 ]
