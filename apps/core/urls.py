@@ -19,6 +19,7 @@ from apps.core.views.create_task_view import CreateTaskView
 from apps.core.views.task_model_serializer_view import TaskModelSerializerView
 from apps.core.views.project_rel_api_view import ProjectRelAPIView
 from apps.core.views.task_rel_api_view import TaskRelAPIView
+from apps.core.views.nested_serializer_view import NestedSerializerView
 
 app_name = "core"
 
@@ -45,4 +46,6 @@ urlpatterns = [
          name="create-projectrel"),
     path('create/projectrel/taskrel/',
          TaskRelAPIView.as_view(), name="create-taskrel"),
+    path('nested-serializer/<int:id>/', NestedSerializerView.as_view(),
+         name="nested-serializer")
 ]
