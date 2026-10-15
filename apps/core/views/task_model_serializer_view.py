@@ -28,3 +28,31 @@ class TaskModelSerializerView(APIView):
             },
             status=status.HTTP_200_OK
         )
+
+    def put(self, request):
+
+        id = request.data["id"]
+        task = Task.objects.get(
+            pk=id
+        )
+
+        serializer = TaskModelSerializer(
+            instance=task,
+            data=request.data,
+            partial=True
+        )
+
+        serializer.is_valid(raise_exception=True)
+        updated_task = serializer.save()
+
+        return Response(
+            TaskModelSerializer(updated_task).data,
+            status=status.HTTP_200_OK,
+        )
+
+
+# {
+#     "id": 1,
+#     "title": "This is the udpated tile",
+#     "description": "This is the updated description"
+# }
