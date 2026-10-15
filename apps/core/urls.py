@@ -12,6 +12,8 @@ from apps.core.views.fbvs import (
     task_status_preview,
 )
 
+from apps.core.views.task_preview_serializer_fields_view import TaskPreviewFieldsView
+
 app_name = "core"
 
 
@@ -24,4 +26,6 @@ urlpatterns = [
     path('v2/task-status-preview/', TaskListCreateView.as_view(),
          name='v2-task-status-preview'),
     path('task-preview/', TaskPreviewView.as_view(), name='task-preview'),
+    path('task-preview-fields/', TaskPreviewFieldsView.as_view(),
+         name='task-preview-fields'),
 ]
