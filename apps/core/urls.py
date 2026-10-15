@@ -17,6 +17,8 @@ from apps.core.views.task_preview_field_level_validation_view import TaskPreview
 from apps.core.views.task_preview_object_level_validation_view import TaskPreviewObjectLevelValidationView
 from apps.core.views.create_task_view import CreateTaskView
 from apps.core.views.task_model_serializer_view import TaskModelSerializerView
+from apps.core.views.project_rel_api_view import ProjectRelAPIView
+from apps.core.views.task_rel_api_view import TaskRelAPIView
 
 app_name = "core"
 
@@ -38,5 +40,9 @@ urlpatterns = [
          name="task-preview-object-level-validation-view"),
     path('create-task/', CreateTaskView.as_view(), name="create-task"),
     path('task-model-serializer/', TaskModelSerializerView.as_view(),
-         name="task-model-serializer")
+         name="task-model-serializer"),
+    path('create/projectrel/', ProjectRelAPIView.as_view(),
+         name="create-projectrel"),
+    path('create/projectrel/taskrel/',
+         TaskRelAPIView.as_view(), name="create-taskrel"),
 ]
