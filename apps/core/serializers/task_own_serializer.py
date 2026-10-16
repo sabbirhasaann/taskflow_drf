@@ -2,7 +2,7 @@ from rest_framework import serializers
 from apps.core.models import TaskOwn
 
 
-class ProjectOwnSerializer(serializers.ModelSerializer):
+class TaskOwnSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskOwn
