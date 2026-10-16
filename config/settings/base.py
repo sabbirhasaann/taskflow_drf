@@ -18,6 +18,8 @@ NEW_INSTALLED_APPS = [
     "apps.core.apps.CoreConfig",
     "m3_serializer_deep_dive.l21_read_write_serializer",
     'm3_serializer_deep_dive.l22_serializer_context',
+    'm3_serializer_deep_dive.l23_serializer_method_field',
+
 ]
 
 INSTALLED_APPS += NEW_INSTALLED_APPS
