@@ -27,3 +27,26 @@ class TaskL23CreateView(APIView):
 #     "title": "Title 1",
 #     "priority": 4
 # }
+
+
+class TaskL23DetailView(APIView):
+
+    def get_object(self, pk):
+        return TaskL23.objects.get(pk=pk)
+
+    def get(self, request, id):
+
+        taskl23 = self.get_object(pk=id)
+
+        if not taskl23:
+            return Response(
+                {
+                    'error': 'Task not found!',
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        return Response(
+            TaskL23Serializer(taskl23).data,
+            status=status.HTTP_200_OK
+        )
