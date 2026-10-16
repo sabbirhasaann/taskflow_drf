@@ -55,3 +55,15 @@ class LabelManyListCreateAPIView(APIView):
             LabelManySerializer(label).data,
             status=status.HTTP_201_CREATED
         )
+
+
+class TaksManyDetailAPIView(APIView):
+
+    def get(self, request, id):
+
+        taskmany = TaskMany.objects.get(pk=id)
+        
+        return Response(
+            TaskManySerializer(taskmany).data,
+            status=status.HTTP_200_OK
+        )

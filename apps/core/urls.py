@@ -24,7 +24,11 @@ from apps.core.views.reverse_nested_serializer_view import ReverseNestedSerializ
 from apps.core.views.project_own_api_view import ProjectOwnAPIView
 from apps.core.views.task_own_api_view import TaskOwnAPIView
 from apps.core.views.get_projects_by_user_api_view import GetProjectsByUserAPIView
-from apps.core.views.many_to_many_api_view import TaskManyListCreateAPIView, LabelManyListCreateAPIView
+from apps.core.views.many_to_many_api_view import (
+    TaskManyListCreateAPIView,
+    LabelManyListCreateAPIView,
+    TaksManyDetailAPIView,
+)
 
 app_name = "core"
 
@@ -64,4 +68,6 @@ urlpatterns = [
          name="task-many-list-create"),
     path('labelsmany/', LabelManyListCreateAPIView.as_view(),
          name="labels-many-list-create"),
+    path('tasksmany/<int:id>/', TaksManyDetailAPIView.as_view(),
+         name="task-many-detail"),
 ]
