@@ -16,6 +16,7 @@ INSTALLED_APPS = [
 NEW_INSTALLED_APPS = [
     'rest_framework',
     "apps.core.apps.CoreConfig",
+    "m3_serializer_deep_dive.l21_read_write_serializer",
 ]
 
 INSTALLED_APPS += NEW_INSTALLED_APPS

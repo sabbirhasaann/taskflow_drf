@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path("api/v1/", include("apps.core.urls")),
+    path("api/v1/m3-serializer-deep-dive/l21-read-write-serializer/",
+         include("m3_serializer_deep_dive.l21_read_write_serializer.urls"),),
 ]
