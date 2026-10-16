@@ -3,11 +3,13 @@ from rest_framework import status
 from rest_framework.response import Response
 from apps.core.models import LabelMany, TaskMany
 from apps.core.serializers.many_to_many_serializer import LabelManySerializer, TaskManySerializer
-
+from django.shortcuts import get_object_or_404
 
 # ----------------------------------------------------
 # 1. TASK ENDPOINTS (List & Create)
 # ----------------------------------------------------
+
+
 class TaskManyListCreateAPIView(APIView):
     def get(self, request):
         tasks = TaskMany.objects.all()
@@ -59,11 +61,22 @@ class LabelManyListCreateAPIView(APIView):
 
 class TaksManyDetailAPIView(APIView):
 
+    def get_object(self, pk):
+        return get_object_or_404(TaskMany, pk=pk)
+
     def get(self, request, id):
 
-        taskmany = TaskMany.objects.get(pk=id)
-        
+        taskmany = self.get_object(pk=id)
+
         return Response(
             TaskManySerializer(taskmany).data,
             status=status.HTTP_200_OK
         )
+
+    def put(self, request, pk):
+        task = self.get_object(pk)
+        serializer = TaskManySerializer(task, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
