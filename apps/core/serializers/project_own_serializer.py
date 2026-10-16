@@ -8,7 +8,6 @@ class ProjectOwnSerializer(serializers.ModelSerializer):
         model = ProjectOwn
         fields = [
             'id',
-            'owner',
             'name',
             'created_at',
             'updated_at'
