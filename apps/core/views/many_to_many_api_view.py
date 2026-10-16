@@ -40,4 +40,18 @@ class LabelManyListCreateAPIView(APIView):
             LabelManySerializer(labels, many=True).data,
             status=status.HTTP_200_OK
         )
-    
+
+    def post(self, request):
+
+        serializer = LabelManySerializer(
+            data=request.data
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        label = serializer.save()
+
+        return Response(
+            LabelManySerializer(label).data,
+            status=status.HTTP_201_CREATED
+        )
