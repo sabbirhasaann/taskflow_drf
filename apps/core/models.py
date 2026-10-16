@@ -62,3 +62,22 @@ class TaskOwn(models.Model):
     is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class LabelMany(models.Model):
+    label = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.label
+
+
+class TaskMany(models.Model):
+    title = models.CharField(max_length=200)
+    labels = models.ManyToManyField(
+        LabelMany,
+        related_name='tasksmany',
+        blank=True
+    )
+
+    def __str__(self):
+        return self.title
