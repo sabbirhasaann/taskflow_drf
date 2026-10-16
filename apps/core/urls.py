@@ -29,6 +29,7 @@ from apps.core.views.many_to_many_api_view import (
     LabelManyListCreateAPIView,
     TaksManyDetailAPIView,
     LabelDetailAPIView,
+    TaskManyLabelManyManageAPIView,
 )
 
 app_name = "core"
@@ -71,5 +72,8 @@ urlpatterns = [
          name="labels-many-list-create"),
     path('tasksmany/<int:id>/', TaksManyDetailAPIView.as_view(),
          name="task-many-detail"),
-         path("labelsmany/<int:pk>/", LabelDetailAPIView.as_view(), name="label-many-detail"),
+    path("labelsmany/<int:pk>/", LabelDetailAPIView.as_view(),
+         name="label-many-detail"),
+    path('tasksmany/<int:pk>/labelsmany/',
+         TaskManyLabelManyManageAPIView.as_view(), name='tasks-many-labels-many'),
 ]

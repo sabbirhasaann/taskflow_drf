@@ -125,3 +125,39 @@ class LabelDetailAPIView(APIView):
         label = self.get_object(pk)
         label.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# ----------------------------------------------------
+# 5. DEDICATED MANY-TO-MANY RELATIONSHIP MANAGEMENT ENDPOINT
+# ----------------------------------------------------
+class TaskManyLabelManyManageAPIView(APIView):
+    def get(self, request, pk):
+        """List all labels attached to a specific task."""
+        task = get_object_or_404(TaskMany, pk=pk)
+        serializer = LabelManySerializer(task.labels.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, pk):
+        """Attach one or more labels to a task.
+
+        Payload format: {"label_ids": [1, 2]}
+        """
+        task = get_object_or_404(TaskMany, pk=pk)
+        label_ids = request.data.get("label_ids", [])
+        labels = LabelMany.objects.filter(pk__in=label_ids)
+
+        task.labels.add(*labels)  # Adds without destroying existing relations
+        serializer = TaskManySerializer(task)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        """Detach specific label(s) from a task.
+
+        Payload format: {"label_ids": [1]}
+        """
+        task = get_object_or_404(TaskMany, pk=pk)
+        label_ids = request.data.get("label_ids", [])
+        labels = LabelMany.objects.filter(pk__in=label_ids)
+
+        task.labels.remove(*labels)
+        serializer = TaskManySerializer(task)
+        return Response(serializer.data, status=status.HTTP_200_OK)
