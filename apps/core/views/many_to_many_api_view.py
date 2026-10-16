@@ -12,7 +12,7 @@ class TaskManyListCreateAPIView(APIView):
     def get(self, request):
         tasks = TaskMany.objects.all()
         serializer = TaskManySerializer(tasks, many=True)
-        
+
         return Response(
             serializer.data,
             status=status.HTTP_200_OK
@@ -28,3 +28,16 @@ class TaskManyListCreateAPIView(APIView):
 # {
 #     "title": "Task Many Title 1"
 # }
+
+
+class LabelManyListCreateAPIView(APIView):
+
+    def get(self, request):
+
+        labels = LabelMany.objects.all()
+
+        return Response(
+            LabelManySerializer(labels, many=True).data,
+            status=status.HTTP_200_OK
+        )
+    
