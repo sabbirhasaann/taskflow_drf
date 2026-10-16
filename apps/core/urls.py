@@ -21,6 +21,7 @@ from apps.core.views.project_rel_api_view import ProjectRelAPIView
 from apps.core.views.task_rel_api_view import TaskRelAPIView
 from apps.core.views.nested_serializer_view import NestedSerializerView
 from apps.core.views.reverse_nested_serializer_view import ReverseNestedSerializerView
+from apps.core.views.project_own_api_view import ProjectOwnAPIView
 
 app_name = "core"
 
@@ -50,5 +51,7 @@ urlpatterns = [
     path('nested-serializer/<int:id>/', NestedSerializerView.as_view(),
          name="nested-serializer"),
     path('reverse-nested-serializer/<int:id>/',
-         ReverseNestedSerializerView.as_view(), name="reverse-nested-serializer")
+         ReverseNestedSerializerView.as_view(), name="reverse-nested-serializer"),
+    path('create/project-own/', ProjectOwnAPIView.as_view(),
+         name='create-project-own')
 ]
