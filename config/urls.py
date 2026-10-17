@@ -26,5 +26,7 @@ urlpatterns = [
     path("api/v1/m3-serializer-deep-dive/l22-serializer-context",
          include('m3_serializer_deep_dive.l22_serializer_context.urls')),
     path("api/v1/m3-serializer-deep-dive/l23-serializer-method-field/",
-         include('m3_serializer_deep_dive.l23_serializer_method_field.urls'))
+         include('m3_serializer_deep_dive.l23_serializer_method_field.urls')),
+    path('api/v1/m4-generic-views/l25-generic-api-view/',
+         include('m4_generic_views.l25_generic_api_view.urls')),
 ]

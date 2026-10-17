@@ -19,6 +19,7 @@ NEW_INSTALLED_APPS = [
     "m3_serializer_deep_dive.l21_read_write_serializer",
     'm3_serializer_deep_dive.l22_serializer_context',
     'm3_serializer_deep_dive.l23_serializer_method_field',
+    'm4_generic_views.l25_generic_api_view',
 
 ]
 
