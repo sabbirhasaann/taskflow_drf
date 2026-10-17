@@ -47,3 +47,22 @@ class ProjectL25ListView(GenericAPIView):
 #     "description": "Description 2",
 #     "status": "active"
 # }
+
+
+class ProjectL25DetailView(GenericAPIView):
+
+    serializer_class = ProjectL25Serializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+
+        project = self.get_object()
+        serializer = self.get_serializer(project)
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+    def get_queryset(self):
+        return ProjectL25.objects.filter(owner=self.request.user)
