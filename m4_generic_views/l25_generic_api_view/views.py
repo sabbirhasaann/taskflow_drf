@@ -74,7 +74,7 @@ class ProjectL25DetailView(GenericAPIView):
     def put(self, request, *args, **kwargs):
 
         project = self.get_object()
-        serializer = self.get_serializer(project, data=request.data)
+        serializer = self.get_serializer(project, data=request.data, partial=False)
         serializer.is_valid(raise_exception=True)
         updated_project = serializer.save()
 
@@ -82,3 +82,4 @@ class ProjectL25DetailView(GenericAPIView):
             ProjectL25Serializer(updated_project).data,
             status=status.HTTP_200_OK
         )
+
