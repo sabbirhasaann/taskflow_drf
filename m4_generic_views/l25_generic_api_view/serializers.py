@@ -21,3 +21,15 @@ class ProjectL25Serializer(serializers.ModelSerializer):
             'created_at',
             'updated_at',
         ]
+
+
+class ProjectL25WriteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProjectL25
+
+        fields = [
+            'name',
+            'description',
+            'status',
+        ]

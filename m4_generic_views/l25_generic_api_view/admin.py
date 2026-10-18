@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import ProjectL25
 
-# Register your models here.
+admin.site.register(ProjectL25)

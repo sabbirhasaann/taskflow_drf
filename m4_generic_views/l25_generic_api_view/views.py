@@ -1,6 +1,6 @@
 from rest_framework.generics import GenericAPIView
 from .models import ProjectL25
-from .serializers import ProjectL25Serializer
+from .serializers import ProjectL25Serializer, ProjectL25WriteSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -51,8 +51,12 @@ class ProjectL25ListView(GenericAPIView):
 
 class ProjectL25DetailView(GenericAPIView):
 
-    serializer_class = ProjectL25Serializer
     permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method in ['PUT', 'POST']:
+            return ProjectL25WriteSerializer
+        return ProjectL25Serializer
 
     def get(self, request, *args, **kwargs):
 
@@ -66,3 +70,15 @@ class ProjectL25DetailView(GenericAPIView):
 
     def get_queryset(self):
         return ProjectL25.objects.filter(owner=self.request.user)
+
+    def put(self, request, *args, **kwargs):
+
+        project = self.get_object()
+        serializer = self.get_serializer(project, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        updated_project = serializer.save()
+
+        return Response(
+            ProjectL25Serializer(updated_project).data,
+            status=status.HTTP_200_OK
+        )
