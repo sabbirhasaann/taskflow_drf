@@ -31,4 +31,6 @@ urlpatterns = [
          include('m4_generic_views.l25_generic_api_view.urls')),
     path('api/v1/m4-generic-views.l26-list-api-view/',
          include('m4_generic_views.l26_list_api_view.urls')),
+    path('api/v1/m4-generic-views.l27-create-api-view',
+         include('m4_generic_views.l27_create_api_view.urls')),
 ]
