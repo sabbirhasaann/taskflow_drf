@@ -6,6 +6,7 @@ from .views.l34_viewsets_view import ProjectViewSets
 
 project_list = ProjectViewSets.as_view({
     "get": "list",
+    "post": "create"
 })
 
 urlpatterns = [
