@@ -11,6 +11,9 @@ project_list = ProjectViewSets.as_view({
 
 project_detail = ProjectViewSets.as_view({
     "get": "retrieve",
+    "put": "update",
+    "patch": "partial_update",
+    "delete": "destroy",
 })
 
 urlpatterns = [

@@ -35,3 +35,38 @@ class ProjectViewSets(viewsets.ViewSet):
             ProjectReadSerializer(project).data,
             status=status.HTTP_201_CREATED
         )
+
+    def update(self, request, pk=None):
+        project = get_object_or_404(Project, pk=pk)
+
+        serializer = ProjectWriteSerializer(
+            project,
+            data=request.data,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save(
+            owner=self.request.user
+        )
+
+        return Response(serializer.data)
+
+    def partial_update(self, request, pk=None):
+        project = get_object_or_404(Project, pk=pk)
+
+        serializer = ProjectWriteSerializer(
+            project,
+            data=request.data,
+            partial=True,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save(
+            owner=self.request.user
+        )
+
+        return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        project = get_object_or_404(Project, pk=pk)
+        project.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
