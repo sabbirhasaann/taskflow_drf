@@ -29,4 +29,6 @@ urlpatterns = [
          include('m3_serializer_deep_dive.l23_serializer_method_field.urls')),
     path('api/v1/m4-generic-views/l25-generic-api-view/',
          include('m4_generic_views.l25_generic_api_view.urls')),
+    path('api/v1/m4-generic-views.l26-list-api-view/',
+         include('m4_generic_views.l26_list_api_view.urls')),
 ]
