@@ -10,3 +10,5 @@ python manage.py startapp l28_retrieve_api_view m4_generic_views/l28_retrieve_ap
 4. 
 python manage.py startapp l29_update_api_view m4_generic_views/l29_update_api_view
 
+5. 
+python manage.py startapp m5_viewsets_and_routers

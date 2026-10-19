@@ -24,6 +24,7 @@ NEW_INSTALLED_APPS = [
     'm4_generic_views.l27_create_api_view',
     'm4_generic_views.l28_retrieve_api_view',
     'm4_generic_views.l29_update_api_view',
+    'm5_viewsets_and_routers',
 
 ]
 
