@@ -1,4 +1,4 @@
-from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWirteSerializer
+from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWriteSerializer
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from apps.core.models import Project
 from rest_framework.response import Response
@@ -15,7 +15,7 @@ class ProjectRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
     def get_serializer_class(self):
         if self.request.method in ['PUT', 'PATCH']:
-            return ProjectWirteSerializer
+            return ProjectWriteSerializer
         return ProjectReadSerializer
 
     def update(self, request, *args, **kwargs):

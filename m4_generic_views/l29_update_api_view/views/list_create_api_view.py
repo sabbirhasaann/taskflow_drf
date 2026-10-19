@@ -1,4 +1,4 @@
-from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWirteSerializer
+from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWriteSerializer
 from rest_framework.generics import ListCreateAPIView
 from apps.core.models import Project
 from rest_framework.response import Response

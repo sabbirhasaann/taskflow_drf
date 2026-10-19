@@ -22,7 +22,7 @@ class ProjectReadSerializer(serializers.ModelSerializer):
         ]
 
 
-class ProjectWirteSerializer(serializers.ModelSerializer):
+class ProjectWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project

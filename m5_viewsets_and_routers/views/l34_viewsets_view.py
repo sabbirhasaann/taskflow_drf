@@ -1,5 +1,5 @@
 from apps.core.models import Project
-from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWirteSerializer
+from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWriteSerializer
 from rest_framework import viewsets, status
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
@@ -27,7 +27,7 @@ class ProjectViewSets(viewsets.ViewSet):
 
     def create(self, request):
 
-        serializer = ProjectWirteSerializer(data=request.data)
+        serializer = ProjectWriteSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         project = serializer.save(owner=self.request.user)
 
