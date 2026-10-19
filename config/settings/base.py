@@ -23,6 +23,7 @@ NEW_INSTALLED_APPS = [
     'm4_generic_views.l26_list_api_view',
     'm4_generic_views.l27_create_api_view',
     'm4_generic_views.l28_retrieve_api_view',
+    'm4_generic_views.l29_update_api_view',
 
 ]
 
