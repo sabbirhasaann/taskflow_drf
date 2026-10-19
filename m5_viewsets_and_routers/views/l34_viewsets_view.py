@@ -1,7 +1,7 @@
 from apps.core.models import Project
 from apps.core.serializers.project_serializer import ProjectReadSerializer, ProjectWirteSerializer
 from rest_framework import viewsets, status
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
@@ -18,6 +18,12 @@ class ProjectViewSets(viewsets.ViewSet):
             serializer.data,
             status=status.HTTP_200_OK
         )
+
+    def retrieve(self, request, pk=None):
+        project = get_object_or_404(Project, pk=pk)
+        serializer = ProjectReadSerializer(project)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
 

@@ -9,6 +9,11 @@ project_list = ProjectViewSets.as_view({
     "post": "create"
 })
 
+project_detail = ProjectViewSets.as_view({
+    "get": "retrieve",
+})
+
 urlpatterns = [
     path('projects/', project_list, name="projects-viewsets-l34"),
+    path('projects/<int:pk>/', project_detail, name='project-detail-l34')
 ]
